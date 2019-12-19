@@ -1,6 +1,6 @@
 # clean-code-python
 
-## Table of Contents
+## 목차
   1. [도입](#도입)
   2. [변수](#변수)
   3. [함수](#함수)
@@ -39,7 +39,7 @@ ymdstr = datetime.date.today().strftime("%y-%m-%d")
 ```python
 current_date: str = datetime.date.today().strftime("%y-%m-%d")
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 ### 동일한 유형의 변수에 동일한 어휘를 사용하세요.
 
@@ -75,7 +75,7 @@ class User:
         # ...
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 ### 검색 가능한 이름을 사용하세요.
 We will read more code than we will ever write. It's important that the code we do write is 
@@ -100,7 +100,7 @@ SECONDS_IN_A_DAY = 60 * 60 * 24
 
 time.sleep(SECONDS_IN_A_DAY)
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 ### 설명적인 변수를 사용하세요.
 **안 좋은 예:**
@@ -135,9 +135,9 @@ matches = re.match(city_zip_code_regex, address)
 
 save_city_zip_code(matches['city'], matches['zip_code'])
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
-### Avoid Mental Mapping
+### Mental Mapping을 피하세요
 코드를 읽는 사람이 변수의 의미를 번역하도록 강요하지 마세요.
 암시적인 것보다 명시적인 것이 좋습니다.
 
@@ -163,7 +163,7 @@ for location in locations:
     # ...
     dispatch(location)
 ```
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 
 ### 불필요한 문맥을 추가하지 마세요.
@@ -188,9 +188,8 @@ class Car:
     color: str
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
-### Use default arguments instead of short circuiting or conditionals
 ### 단락 또는 조건문 대신 기본 인수(arguments)를 사용하세요.
 
 **Tricky**
@@ -215,17 +214,25 @@ def create_micro_brewery(name: str = "Hipster Brew Co."):
     # etc.
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 ## **함수**
-### Function arguments (2 or fewer ideally)
+### 함수 인수(arguments) (2개 이하)
 Limiting the amount of function parameters is incredibly important because it makes 
 testing your function easier. Having more than three leads to a combinatorial explosion 
 where you have to test tons of different cases with each separate argument.
+
+함수 매개변수(parameter)의 양을 제한하는 것은 함수 테스트를 보다 쉽게 하기 때문에 매우 중요합니다.
+세개 이상이면 서로 다른 경우의 수를 각각의 개별 인수(argument)로 다양한 사례를 테스트해야 하기 때문에 조합 폭발로 이어집니다.
 
 Zero arguments is the ideal case. One or two arguments is ok, and three should be avoided. 
 Anything more than that should be consolidated. Usually, if you have more than two 
 arguments then your function is trying to do too much. In cases where it's not, most 
 of the time a higher-level object will suffice as an argument.
+
+인수(arguments)가 없는 것이 이상적인 경우입니다. 하나 또는 두개의 인수(arguments)는 괜찮으며 세 개는 피해야 합니다.
+그 이상은 모두 통합되어야 합니다. 일반적으로 인수(arguments)가 두개 이상이면 함수가 너무 작업을 수행하려고 합니다.
+그렇지 않은 경우 대게 상위 객체의 인수로 충분합니다.
+
 
 **안 좋은 예:**
 ```python
@@ -278,7 +285,7 @@ config = MenuConfig
 config.title = "My delicious menu"
 config.body = "A description of the various items on the menu"
 config.button_text = "Order now!"
-# The instance attribute overrides the default class attribute.
+# 인스턴스 속성(attribute)은 기본 클래스 속성(attribute)보다 우선합니다.
 config.cancellable = True
 
 create_menu(config)
@@ -352,14 +359,19 @@ create_menu(
 )
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
-### Functions should do one thing
+### 함수는 한 가지 일을 해야 합니다.
 This is by far the most important rule in software engineering. When functions do more 
 than one thing, they are harder to compose, test, and reason about. When you can isolate 
 a function to just one action, they can be refactored easily and your code will read much 
 cleaner. If you take nothing else away from this guide other than this, you'll be ahead 
 of many developers.
+
+이것은 소프트웨어 엔지니어링에서 단연코 가장 중요한 규칙입니다. 
+함수가 한 가지 이상의 작업을 수행하면 작성, 테스트 및 추론하기가 더 어렵습니다.
+함수를 하나의 동작으로 분리 할 수 있다면 쉽게 리팩토링 할 수 있으며 코드가 훨씬 깔끔해집니다.
+
 
 **안 좋은 예:**
 ```python
@@ -405,7 +417,7 @@ def email_client(clients: Iterator[Client]) -> None:
 ```
 
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 ### Function names should say what they do
 
@@ -433,7 +445,7 @@ message = Email()
 message.send()
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 ### Functions should only be one level of abstraction
 
@@ -497,7 +509,7 @@ def parse(tokens: list) -> list:
     return syntax_tree
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 ### Don't use flags as function parameters
 
@@ -529,7 +541,7 @@ def create_temp_file(name: str) -> None:
     Path('./temp/' + name).touch()
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 ### Avoid side effects
 
@@ -602,13 +614,13 @@ print(person.name)  # 'Ryan McDermott'
 print(person.name_as_first_and_last)  # ['Ryan', 'McDermott']
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 ## **객체와 자료구조**
 
 *Coming soon*
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 ## **클래스**
 
@@ -620,11 +632,11 @@ print(person.name_as_first_and_last)  # ['Ryan', 'McDermott']
 
 *Coming soon*
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
 ## **Don't repeat yourself (DRY)**
 
 *Coming soon*
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ 맨 위로](#목차)**
 
